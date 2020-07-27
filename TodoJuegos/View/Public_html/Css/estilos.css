@@ -1,0 +1,82 @@
+@charset "UTF-8";
+body {
+  background-color: #1B002C;
+  /* Estilos del cuerpo */
+  /* Footer */ }
+  body .cabecera {
+    background-color: #002C1B; }
+    body .cabecera .logo {
+      text-align: center; }
+    body .cabecera .titulo {
+      color: white; }
+  body .cuerpo {
+    /* Columna izquierda */
+    /* Columna central */
+    /* Columna de la derecha */ }
+    body .cuerpo .login {
+      background-color: white; }
+      body .cuerpo .login .form button {
+        background-color: #1B002C;
+        color: white; }
+    body .cuerpo .columna-izq .menu .menu-btn:hover {
+      background-color: #2C1B00; }
+      body .cuerpo .columna-izq .menu .menu-btn:hover a {
+        color: white; }
+    body .cuerpo .columna-izq .menu .menu-btn .menu-link {
+      color: #1B002C; }
+      body .cuerpo .columna-izq .menu .menu-btn .menu-link:hover {
+        color: white; }
+    body .cuerpo .columna-izq .salas_chat .lista_chat a {
+      color: #1B002C; }
+      body .cuerpo .columna-izq .salas_chat .lista_chat a:hover {
+        background-color: #2C1B00;
+        color: white; }
+    body .cuerpo .columna-central {
+      /* Páginas del listado de videojuegos */
+      /* Chat de la página */ }
+      body .cuerpo .columna-central .juegos {
+        /* Plataformas de juegos */ }
+        body .cuerpo .columna-central .juegos .juego-carta, body .cuerpo .columna-central .juegos .juego {
+          color: #1B002C; }
+          body .cuerpo .columna-central .juegos .juego-carta a .card-img-top, body .cuerpo .columna-central .juegos .juego a .card-img-top {
+            width: 100%;
+            height: 25vw;
+            object-fit: cover; }
+          @media (max-width: 767px) {
+            body .cuerpo .columna-central .juegos .juego-carta a .card-img-top, body .cuerpo .columna-central .juegos .juego a .card-img-top {
+              width: 100%;
+              height: 70vw;
+              object-fit: cover; } }
+          body .cuerpo .columna-central .juegos .juego-carta .cuerpo a, body .cuerpo .columna-central .juegos .juego .cuerpo a {
+            background-color: #1B002C;
+            color: white; }
+            body .cuerpo .columna-central .juegos .juego-carta .cuerpo a:hover, body .cuerpo .columna-central .juegos .juego .cuerpo a:hover {
+              background-color: #002C1B;
+              color: white; }
+        body .cuerpo .columna-central .juegos .plataforma .card a .card-img-top {
+          width: 100%;
+          height: 25vw;
+          object-fit: cover; }
+        @media (max-width: 767px) {
+          body .cuerpo .columna-central .juegos .plataforma .card a .card-img-top {
+            width: 100%;
+            height: 70vw;
+            object-fit: cover; } }
+      body .cuerpo .columna-central .chat .texto #mensajes p {
+        color: navy; }
+        body .cuerpo .columna-central .chat .texto #mensajes p .nombre {
+          color: #002C1B; }
+        body .cuerpo .columna-central .chat .texto #mensajes p small {
+          color: gray; }
+    body .cuerpo .columna-derech .lista_chat a {
+      color: #1B002C; }
+      body .cuerpo .columna-derech .lista_chat a:hover {
+        background-color: #2C1B00;
+        color: white; }
+  body .footer {
+    background-color: #002C1B; }
+    body .footer p {
+      color: white;
+      text-align: center; }
+
+/*# sourceMappingURL=estilos.css.map */

@@ -1,0 +1,150 @@
+$colorVerde : #002C1B;
+$colorMorado : #1B002C;
+$colorMarron : #2C1B00;
+
+body{
+    background-color: $colorMorado;
+    //estilos de la cabecera
+    .cabecera{
+        background-color: $colorVerde;
+        .logo{
+            text-align: center;
+        }
+        .titulo{
+            color: white;
+        }
+    }
+    /* Estilos del cuerpo */
+    .cuerpo{
+        //Estilos del login y registro inicial
+        .login{
+            background-color: white;
+            .form{
+                button{
+                    background-color: $colorMorado;
+                    color: white;
+                }
+            }
+        }
+
+        /* Columna izquierda */
+        .columna-izq{
+            .menu{
+                .menu-btn{
+                    &:hover{
+                        background-color: $colorMarron;
+                        a{
+                            color: white;
+                        }
+                    }
+                    .menu-link{
+                        &:hover{
+                            color: white;
+                        }
+                        color: $colorMorado;
+                    }
+                }
+            }
+            .salas_chat{
+                .lista_chat{
+                   a{
+                        &:hover{
+                            background-color: $colorMarron;
+                            color: white;
+                        }
+                        color: $colorMorado;   
+                    } 
+                }
+                
+            }
+        }
+        /* Columna central */
+        .columna-central{
+            /* Páginas del listado de videojuegos */
+            .juegos{
+                .juego-carta, .juego{
+                    color: $colorMorado;
+                        a{
+                            .card-img-top{
+                                width: 100%;
+                                height: 25vw;
+                                object-fit: cover;
+                            }
+                            @media (max-width:767px){
+                                .card-img-top{
+                                    width: 100%;
+                                    height: 70vw;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                    .cuerpo{
+                        a{
+                            &:hover{
+                                background-color: $colorVerde;
+                                color: white;
+                            }
+                            background-color: $colorMorado;
+                            color: white;
+                        }
+                    }
+                }
+                /* Plataformas de juegos */
+                .plataforma{
+                    .card{
+                        a{
+                            .card-img-top{
+                                width: 100%;
+                                height: 25vw;
+                                object-fit: cover;
+                            }
+                            @media (max-width:767px){
+                                .card-img-top{
+                                    width: 100%;
+                                    height: 70vw;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            /* Chat de la página */
+            .chat{
+                .texto{
+                    #mensajes{
+                        p{
+                            color: navy;
+                            .nombre{
+                                color: $colorVerde;
+                            }
+                            small{
+                                color: gray;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /* Columna de la derecha */
+        .columna-derech{
+            .lista_chat{
+                a{
+                     &:hover{
+                         background-color: $colorMarron;
+                         color: white;
+                     }
+                     color: $colorMorado;   
+                 } 
+             }
+        }
+    }
+    /* Footer */
+    .footer{
+        background-color: $colorVerde;
+        p{
+            color: white;
+            text-align: center;
+        }
+    }
+}

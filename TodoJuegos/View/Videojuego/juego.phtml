@@ -1,0 +1,27 @@
+<div class="row justify-content-center juegos m-1">
+<?php
+    if($juego->TotalFilasConsulta()>0){
+        for ($i=0; $i < $juego->TotalFilasConsulta(); $i++) { 
+            $juego->CargarDatos($i);
+            if($juego->getPunt_total() > 0){
+               $punt_total = $juego->getPunt_total();
+            }else{
+                $punt_total = 0;
+            }
+            echo '<div class="col-5 text-center py-3 bg-white juego">
+                    <img src="View/Public_html/Imagenes/'.$juego->getFoto().'" alt="" class="img-fluid card-img-top w-75">
+                    <div class="card-body text-center cuerpo">
+                        <p class="text-center"><b>Año de Publicación: </b>'.$juego->getAnyo_lanzamiento().'</p>
+                        <a href="index.php?controller=juego&action=juego&nomJuego='.$juego->getNombre_juego().'&voto=1" class="btn btn-primary '.$votado.'">'.$votadoLetra.'</a>
+                        <h3 class="card-text pt-4">'.$punt_total.'</h3>
+                        <p class="card-text"><b>Puntuación total</b></p>
+                    </div>
+                </div>
+            <div class="col-7 py-3 bg-white">
+                <h2 class="text-center p-5">'.$juego->getNombre_juego().'</h2>
+                <p class="text-justify">'.$juego->getDesc_juego().'</p>
+            </div>';
+        }
+    }
+?>
+</div>

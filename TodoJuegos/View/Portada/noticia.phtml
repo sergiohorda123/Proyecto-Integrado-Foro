@@ -1,0 +1,11 @@
+<?php
+            $noticias->CargarDatos(0);
+            echo '<div class="row align-items-center bg-white mx-2 py-2">
+            <div class="col-12 text-center">
+                <img src="View/Public_html/Imagenes/' . $noticias->getFoto() . '" alt="" class="img-fluid">
+            </div>
+            <div class="col-12 text-justify p-3">
+                <h2 class="titulo p-2">' . $noticias->getNombre_noticia() . '</h2>
+                <p class="p-2"><small>Dia/Mes: '.$noticias->getDia().'/'.$noticias->getMes().' - Hora: '.$noticias->getHora().'</small> || ' . $noticias->getDesc_noticia() . '</p>
+            </div>
+            </div>';

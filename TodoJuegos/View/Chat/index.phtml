@@ -1,0 +1,32 @@
+<div class="row chat">
+<img src="View/Public_html/Imagenes/pacman.jpg" alt="" class="img-fluid w-100">
+    <div class="col-12 mt-3 texto">
+        <div class="bg-white rounded" id="mensajes">
+            
+        </div>
+    </div>
+    <div class="col-12 d-none d-lg-block mx-3">
+        <div class="texto_contenido">
+            <form action="#" class="form-inline row" method="post">
+                <input type="text" name="mensaje" class="form-control col-11" placeholder="Escriba su mensaje.." id="escribe" required>
+                <button type="submit" class="btn col-1" name="btn-enviar"><img src="View/Public_html/Imagenes/flechaEnvio.png" alt="" class="img-fluid w-50"></button>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 d-block d-lg-none">
+        <div class="texto_contenido">
+            <form action="#" class="form-inline row" method="post">
+                <input type="text" name="mensaje" class="form-control col-10" placeholder="Escriba su mensaje.." id="escribe" required>
+                <button type="submit" class="btn col-2" name="btn-enviar"><img src="View/Public_html/Imagenes/flechaEnvio.png" alt="" class="img-fluid"></button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            setInterval(
+                function () {
+                    $("#mensajes").load("View/Chat/mensaje.php");
+                },500);
+        });
+    </script>
+</div>

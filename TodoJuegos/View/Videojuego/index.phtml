@@ -1,0 +1,59 @@
+<div class="row justify-content-around juegos">
+<?php
+    if($juego->TotalFilasConsulta()>0){
+        for ($i=0; $i < $juego->TotalFilasConsulta(); $i++) { 
+            $juego->CargarDatos($i);
+            $votado = "";
+            $votadoLetra = "Votar";
+            $nombre = $juego->getNombre_juego();
+            /* Comprobar votado */
+            $usuarioVoto = new Login($enlaceBD);
+            $nombreUsuario = $_SESSION["usuario"];
+            $usuarioVoto->Seleccionar("nombre_usuario = '$nombreUsuario'");
+            $usuarioVoto->CargarDatos(0);
+            $idUsuario = $usuarioVoto->getId();
+            $voto = new Voto($enlaceBD,0,$idUsuario,$nombre);
+            $voto->Seleccionar("id_usuario = $idUsuario AND nombre_juego = '$nombre'");
+            if($voto->TotalFilasConsulta() >= 1){
+                $votado = "disabled";
+                $votadoLetra = "Votado!";
+            }else{
+                $votado = "enabled";
+            }
+            
+            if($juego->getPunt_total() > 0){
+               $punt_total = $juego->getPunt_total(); 
+            }else{
+                $punt_total = 0;
+            }
+            echo '<div class="col-12 col-md-5 card text-center my-3 py-3 juego-carta">
+                    <a href="index.php?controller=juego&action=juego&nomJuego='.$juego->getNombre_juego().'">
+                        <img src="View/Public_html/Imagenes/'. $juego->getFoto() .'" alt="" class="img-fluid card-img-top w-75">
+                    </a>
+                    <div class="card-body text-center cuerpo">
+                        <h2 class="card-title">'. $juego->getNombre_juego() .'</h2>
+                        <a href="index.php?controller=juego&action=juego&nomJuego='.$juego->getNombre_juego().'" class="btn btn-primary">Review</a>
+                        <a href="index.php?controller=juego&action=juego&nomJuego='.$juego->getNombre_juego().'&voto=1" class="btn btn-primary '.$votado.'">'.$votadoLetra.'</a>
+                        <h3 class="card-text pt-4">'. $punt_total .'</h3>
+                        <p class="card-text"><b>Puntuación total</b></p>
+                    </div>
+                </div>';
+        }
+    }
+
+?>
+</div>
+<div class="text-center">
+    <p class="text-white text-center">Páginas:&nbsp;</p>
+    <?php
+    if(isset($_GET["plataforma"])){
+        for ($i=1; $i <= $total_paginas; $i++) { 
+            echo " <a class='text-white' href='index.php?controller=juego&action=index&plataforma=".$_GET["plataforma"]."&pagina=" . $i . "'>" . $i . "</a>&nbsp;";
+        }
+    }else{
+        for ($i=1; $i <= $total_paginas; $i++) { 
+            echo " <a class='text-white' href='index.php?controller=juego&action=index&pagina=" . $i . "'>" . $i . "</a>&nbsp;";
+        }
+    }
+    ?>
+</div>

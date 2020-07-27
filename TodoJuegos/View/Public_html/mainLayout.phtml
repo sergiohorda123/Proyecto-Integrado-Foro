@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="View/Public_html/Css/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <title>Foro de Videojuegos</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Cabecera -->
+        <div class="row cabecera justify-content-center">
+            <div class="col-12 col-md-4 align-self-center text-center icono">
+                <?php
+                    if (isset($_SESSION["usuario"])) {
+                        echo '<a href="index.php?controller=portada&action=index">
+                        <img class="img-fluid" src="View/Public_html/Imagenes/logo.png" alt="">
+                        </a>';
+                    }else{
+                        echo '<a href="index.php">
+                <img class="img-fluid" src="View/Public_html/Imagenes/logo.png" alt="">
+                </a>';
+                    }
+                ?>
+                
+            </div>
+            <div class="col-12 col-md-8 titulo">
+                <div class="row h-100 align-items-end">
+                    <div class="col-12 text-center">
+                        <h1 class="display-2">TODO JUEGOS</h1>
+                    </div>
+                    <div class="col-12 text-right align-self-end">
+                        <?php
+                            if (isset($_SESSION["usuario"])) {
+                                echo "<p>Has iniciado como " . $_SESSION["usuario"] . ". <a href='index.php?sesion'>Cerrar Sesión</a></p>";
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cuerpo -->
+        <div class="row cuerpo">
+            <?php
+            if (isset($_SESSION["usuario"])) {
+                require_once("Model/videojuego.php");
+                
+                /* Columna izquierda */
+                echo '<div class="col-12 col-lg-2 bg-white columna-izq rounded">
+                            <div class="menu text-center flex-column my-5">
+                                <div class="menu-btn py-2 my-2">
+                                    <a href="index.php?controller=portada&action=index" class="menu-link text-decoration-none">INICIO</a>
+                                </div>
+                                <div class="menu-btn nav-item py-2 my-2">
+                                    <a href="index.php?controller=juego&action=index" class="menu-link text-decoration-none">LISTADO DE JUEGOS</a>
+                                </div>
+                                <div class="menu-btn nav-item py-2 my-2">
+                                    <a href="index.php?controller=foro&action=index" class="menu-link text-decoration-none">FORO</a>
+                                </div>
+                                <div class="menu-btn nav-item py-2 my-2">
+                                    <a href="index.php?controller=juego&action=plataforma" class="menu-link text-break text-decoration-none">PLATAFORMAS</a>
+                                </div>';
+                                if ($_SESSION["rol"] == 0) {
+                                   echo '<div class="menu-btn nav-item menu-hover py-2 my-2">
+                                            <a href="index.php?controller=admin&action=index" class="menu-link text-decoration-none">GESTIÓN DE USUARIOS</a>
+                                        </div>';
+                                }
+                        echo '</div>
+                            <div class="list-group list-group-flush py-5">';
+                                echo '<h2 class="d-none d-md-block text-center">TOP JUEGOS</h2>';
+                                echo '<h2 class="d-block d-md-none text-center">TOP</h2>';
+                                $top = new Videojuego($enlaceBD);
+                                $top->Seleccionar("1=1 ORDER BY punt_total DESC LIMIT 0,10");
+                                if($top->TotalFilasConsulta()>0){
+                                    for ($i=0; $i < $top->TotalFilasConsulta(); $i++) { 
+                                        $top->CargarDatos($i);
+                                        $orden = $i + 1;
+                                        echo '<a href="index.php?controller=juego&action=juego&nomJuego='.$top->getNombre_juego().'" class="btn list-group-item list-group-item-action d-flex justify-content-between align-items-center">'.$orden.'. '.$top->getNombre_juego().' <span class="badge badge-primary badge-pill">'.$top->getNum_votos().'</span></a>';
+                                    }
+                                }
+                            echo '</div>
+                            <div class="salas_chat d-block d-lg-none">
+                                <div class="lista_chat text-center my-3 py-3 list-group">
+                                    <h2>SALA DE CHAT</h2>
+                                    <a href="index.php?controller=chat&action=index&sala=1" class="text-decoration-none list-group-item list-group-item-action d-flex justify-content-around align-items-center">Sala 1</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-8 rounded columna-central">
+                        <div class="alert alert-success text-center" role="alert">
+                            <b>Nuevo EVENTO!!! Entra en la mazmorra del Lich King desde las 15:00 con la hermandad de los Oscuros en el servidor de Ragnarok JUEGO(WoW)</b>
+                        </div>';
+                        /* Columna central */
+                            require_once('Include/routes.php');
+                            /* Columna de la derecha */
+                        echo '</div>
+                        <div class="col-lg-2 d-none d-lg-block columna-derech bg-white rounded">
+                            <img src="View/Public_html/Imagenes/anuncio.jpg" alt="" class="img-fluid">
+                            <div class="lista_chat my-3 py-3 text-center list-group">
+                                <h2 class="p-3">SALA DE CHAT</h2>
+                                <a href="index.php?controller=chat&action=index&sala=1" class="text-decoration-none list-group-item list-group-item-action d-flex justify-content-around align-items-center">Sala 1</a>
+                            </div>
+                            <img src="View/Public_html/Imagenes/imagen_juego.jpg" alt="" class="img-fluid">
+                        </div>';
+            }else{
+                /* Estilos donde saldrá lo del login */
+                echo '<div class="col-12">';
+                require_once('Include/routes.php');
+                echo '</div>';
+            }
+            ?>
+        </div>
+        <!-- Anuncio en pequeño -->
+        <div class="row">
+            <div class="col-12 d-block d-md-none">
+                <img src="View/Public_html/Imagenes/anuncio.jpg" alt="" class="img-fluid">
+            </div>
+        </div>
+        <!-- footer -->
+        <div class="row footer pt-3 align-items-center justify-content-center">
+            <p class="col-12 text-white text-center">TÉRMINOS Y CONDICIONES - COPYRIGHT 2020 - TODOJUEGOS.COM</p>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".alert").fadeOut(2000);
+            },5000);
+        });
+    </script>
+</body>
+
+</html>

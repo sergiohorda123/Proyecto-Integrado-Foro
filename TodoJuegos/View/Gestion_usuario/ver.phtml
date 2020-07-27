@@ -1,0 +1,20 @@
+<div class="row justify-content-center mt-5">
+        <?php
+            if($usuario->TotalFilasConsulta()>0){
+                $usuario->CargarDatos(0);
+                echo '<div class="col-3">
+                <img src="View/Public_html/Imagenes/'.$usuario->getFoto().'" class="img-fluid rounded-circle" alt="">
+                </div>
+                <div class="col-8 text-white text-left">
+                    <p>Nombre: '.$usuario->getNombre_usuario().'</p>
+                    <p>Email: '.$usuario->getEmail().'</p>';
+                if($usuario->getRol() == 0){
+                    echo '<p>Rol: Administrador</p></div>';
+                }elseif($usuario->getRol() == 1){
+                    echo '<p>Rol: Usuario</p></div>';
+                }
+            }else{
+                echo "<h1>Lo siento no existen usuarios en este foro registrados</h1>";
+            }
+        ?>
+</div>
